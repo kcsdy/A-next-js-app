@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/**
+ * Brand tokens. Burgundy, beige and white were settled during the identity
+ * work; everything else here is derived from them.
+ *
+ * White is the reading surface — beige appears only as a band behind supporting
+ * sections, and burgundy carries the structure (rules, headings, footer).
+ */
+@theme {
+  --color-burgundy: #6b1f2e;
+  --color-burgundy-deep: #43121d;
+  --color-burgundy-soft: #8c3a48;
+  --color-beige: #e7dccc;
+  --color-beige-pale: #f3ede4;
+  --color-ink: #241c1f;
+  --color-muted: #6b5e62;
+  --color-rule: #ded3c5;
+
+  --font-display: var(--font-serif-display), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-sans-body), ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale, roughly 1.25 */
+  --text-display: clamp(2.25rem, 6.5vw, 3.25rem);
+  --text-display--line-height: 1.08;
+  --text-display--letter-spacing: -0.02em;
+  --text-title: clamp(1.6rem, 4vw, 2rem);
+  --text-title--line-height: 1.2;
+  --text-lede: 1.1875rem;
+  --text-lede--line-height: 1.6;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* The header is sticky, so anchor targets need clearance. */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    color: var(--color-burgundy-deep);
+    text-wrap: balance;
+  }
+
+  /* Keyboard focus must stay visible everywhere. */
+  :focus-visible {
+    outline: 2px solid var(--color-burgundy);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-beige);
+    color: var(--color-burgundy-deep);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
