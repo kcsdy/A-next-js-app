@@ -3,6 +3,7 @@ import { Source_Serif_4, IBM_Plex_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { site } from "@/content/site";
+import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 /**
@@ -23,8 +24,6 @@ const sansBody = IBM_Plex_Sans({
   display: "swap",
   variable: "--font-sans-body",
 });
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
