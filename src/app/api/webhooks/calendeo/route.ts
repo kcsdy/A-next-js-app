@@ -154,6 +154,28 @@ function alreadyProcessed(id: string): boolean {
 
 const resendApiKey = process.env.RESEND_API_KEY;
 
+/**
+ * Calendeo's dashboard appears to check reachability before letting you
+ * save the webhook URL — separate from actual event delivery, which is
+ * always a signed POST. Answer plain GETs and CORS preflights with a bare
+ * 200 so that check succeeds; real events still go through the strict
+ * signature + payload checks in POST below.
+ */
+export function GET() {
+  return NextResponse.json({ ok: true });
+}
+
+export function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, X-Calendeo-Signature, X-Calendeo-Event",
+    },
+  });
+}
+
 export async function POST(request: Request) {
   const rawBody = await request.text();
   const secret = process.env.CALENDEO_WEBHOOK_SECRET;
