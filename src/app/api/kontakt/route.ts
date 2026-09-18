@@ -1,12 +1,18 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { enquirySchema } from "@/lib/schema";
-import { getService } from "@/content/services";
+import { createTranslator } from "next-intl";
+import { createEnquirySchema } from "@/lib/schema";
+import { routing } from "@/i18n/routing";
 
 /**
  * Client-side validation is a convenience; this is the check that counts.
  * Nothing is written to a database — the enquiry is forwarded as email and
  * then forgotten, which keeps the RODO surface as small as possible.
+ *
+ * This route sits outside the [locale] segment (see src/middleware.ts
+ * matcher), so it gets no locale from the URL — the client sends the
+ * locale it was on in the request body instead, purely to pick which
+ * language to reply in.
  */
 
 // Crude in-memory throttle. Serverless instances are short-lived so this only
@@ -41,25 +47,37 @@ async function verifyTurnstile(token: string | undefined, ip: string) {
   return result.success;
 }
 
+async function loadMessages(locale: string) {
+  try {
+    return (await import(`../../../../messages/${locale}.json`)).default;
+  } catch {
+    return (await import(`../../../../messages/${routing.defaultLocale}.json`))
+      .default;
+  }
+}
+
 export async function POST(request: Request) {
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
 
+  const body = await request.json().catch(() => null);
+  const rawLocale = typeof body?.locale === "string" ? body.locale : "";
+  const locale = (routing.locales as readonly string[]).includes(rawLocale)
+    ? rawLocale
+    : routing.defaultLocale;
+
+  const messages = await loadMessages(locale);
+  const t = createTranslator({ locale, messages, namespace: "contactForm" });
+
   if (rateLimited(ip)) {
-    return NextResponse.json(
-      { error: "Zbyt wiele prób. Spróbuj ponownie za chwilę." },
-      { status: 429 },
-    );
+    return NextResponse.json({ error: t("api.rateLimited") }, { status: 429 });
   }
 
-  const body = await request.json().catch(() => null);
-  const parsed = enquirySchema.safeParse(body);
+  const schema = createEnquirySchema((key) => t(`errors.${key}`));
+  const parsed = schema.safeParse(body);
 
   if (!parsed.success) {
-    return NextResponse.json(
-      { error: "Formularz zawiera błędy." },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: t("api.invalid") }, { status: 400 });
   }
 
   const enquiry = parsed.data;
@@ -71,15 +89,20 @@ export async function POST(request: Request) {
 
   if (!(await verifyTurnstile(enquiry.turnstileToken, ip))) {
     return NextResponse.json(
-      { error: "Weryfikacja nie powiodła się. Odśwież stronę i spróbuj ponownie." },
+      { error: t("api.turnstileFailed") },
       { status: 400 },
     );
   }
 
+  // The internal notification email is always Polish — it goes to the
+  // firm's own inbox, not the visitor, regardless of which locale they used
+  // or which locale the site defaults to for visitors.
+  const plMessages = await loadMessages("pl");
+  const tPl = createTranslator({ locale: "pl", messages: plMessages });
   const matterLabel =
     enquiry.matter === "inna"
-      ? "Inna sprawa"
-      : (getService(enquiry.matter)?.title ?? enquiry.matter);
+      ? tPl("contactForm.fields.matterOther")
+      : tPl(`services.${enquiry.matter}.title`);
 
   const apiKey = process.env.RESEND_API_KEY;
 
@@ -105,6 +128,7 @@ export async function POST(request: Request) {
         `Imię i nazwisko: ${enquiry.name}`,
         `E-mail: ${enquiry.email}`,
         `Telefon: ${enquiry.phone || "nie podano"}`,
+        `Język strony: ${locale}`,
         `Zgoda RODO: tak (${new Date().toISOString()})`,
         "",
         enquiry.message,
@@ -114,10 +138,7 @@ export async function POST(request: Request) {
     if (error) throw new Error(error.message);
   } catch (error) {
     console.error("[kontakt] send failed", error);
-    return NextResponse.json(
-      { error: "Nie udało się wysłać wiadomości. Zadzwoń albo napisz e-mail." },
-      { status: 502 },
-    );
+    return NextResponse.json({ error: t("api.sendFailed") }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true, delivered: true });

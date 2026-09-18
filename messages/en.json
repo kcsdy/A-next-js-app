@@ -1,0 +1,409 @@
+{
+  "a11y": {
+    "skipToContent": "Skip to content"
+  },
+  "nav": {
+    "logoSubtitle": "Immigration Law Firm",
+    "services": "Services",
+    "about": "About the firm",
+    "knowledgeBase": "Knowledge base",
+    "contact": "Contact",
+    "call": "Call us",
+    "menu": "Menu",
+    "close": "Close",
+    "language": "Choose language"
+  },
+  "site": {
+    "city": "Warsaw",
+    "tagline": "Where immigration law meets humanity",
+    "description": "An immigration law firm in Warsaw. Residence cards, work permits, invitations for family, PESEL number and address registration, driving licence exchange."
+  },
+  "scheduleBanner": {
+    "heading": "Book a consultation online",
+    "body": "Pick a time that works for you — no need to call first.",
+    "cta": "Schedule an appointment"
+  },
+  "schedulePage": {
+    "metaTitle": "Schedule an appointment",
+    "metaDescription": "Book a consultation with the firm directly online.",
+    "title": "Schedule an appointment",
+    "intro": "Pick a time below and we'll confirm the details by email.",
+    "iframeTitle": "Appointment scheduling calendar"
+  },
+  "home": {
+    "metaTitle": "MCH Immigration Law Firm — Warsaw",
+    "metaDescription": "An immigration law firm in Warsaw. Residence cards, work permits, invitations for family, PESEL number and address registration, driving licence exchange.",
+    "tagline": "Where immigration law meets humanity",
+    "title": "Residence cases handled from start to finish",
+    "lede": "An immigration law firm in Warsaw. We complete the paperwork, track deadlines and handle correspondence with the office, so you don't have to do it alone.",
+    "languagesLine": "We speak: Polish · English · Ukrainian · Russian",
+    "ctaDescribe": "Describe your case",
+    "caseFinder": {
+      "label": "Choose the type of case",
+      "placeholder": "What is your case about?",
+      "cta": "See the procedure"
+    },
+    "why": {
+      "heading": "Why work with us",
+      "items": [
+        {
+          "title": "One team, start to finish",
+          "body": "A single team tracks the application, the deadlines and the correspondence with the office — you don't have to coordinate several people at once."
+        },
+        {
+          "title": "We speak your language",
+          "body": "We handle cases in Polish, English, Ukrainian and Russian."
+        },
+        {
+          "title": "You always know where things stand",
+          "body": "We tell you about every letter from the office and what needs to happen next — without you having to ask for a status update."
+        }
+      ]
+    },
+    "process": {
+      "heading": "How working together looks",
+      "steps": [
+        {
+          "title": "Initial conversation",
+          "body": "You describe the situation and show us whatever documents you already have. We work out which procedure applies and whether the deadline still holds."
+        },
+        {
+          "title": "Putting the application together",
+          "body": "We prepare a list of the documents that are missing, check translations and write the justification for the application."
+        },
+        {
+          "title": "The proceedings",
+          "body": "We file the application, receive correspondence from the office and respond to any requests to complete missing information."
+        }
+      ]
+    },
+    "testimonialsHeading": "What clients say",
+    "testimonials": [
+      {
+        "quote": "I knew at every stage what was happening with my case and what still needed to be delivered. Nothing slipped through.",
+        "name": "Olena K.",
+        "context": "Temporary residence card"
+      },
+      {
+        "quote": "The case seemed complicated until I sat down with someone who actually handles this every day.",
+        "name": "Marco R.",
+        "context": "Work permit"
+      },
+      {
+        "quote": "Replies came quickly, in English, without unnecessary legal jargon.",
+        "name": "Aigerim T.",
+        "context": "Permanent residence"
+      }
+    ],
+    "faqHeading": "Frequently asked questions",
+    "faq": [
+      {
+        "question": "Do I need to come to the office in person to start a case?",
+        "answer": "No. The first conversation can happen through the contact form or by phone. Showing up in person at the office is usually only needed at the stage of filing the application — we let you know beforehand whenever it's necessary."
+      },
+      {
+        "question": "How long does a residence card procedure take?",
+        "answer": "It depends on the office and the type of case — anywhere from a few months to over a year during busy periods. During the initial conversation we tell you what timeframe to realistically expect for your specific procedure."
+      },
+      {
+        "question": "What happens if my legal stay expires while the case is pending?",
+        "answer": "Filing a complete application before your legal stay ends usually entitles you to remain in Poland for the duration of the proceedings — confirmed by the relevant stamp in your passport. We check this individually for every case."
+      },
+      {
+        "question": "Do you handle cases outside Warsaw?",
+        "answer": "We fully handle cases where the competent authority is the Mazovian Voivodeship Office or a Warsaw district office. In other regions we can advise, but we do not represent clients before the local office."
+      },
+      {
+        "question": "How much does it cost to have you handle a case?",
+        "answer": "The cost depends on the type of procedure and how complex it is. We give a quote after the initial conversation, once we know the scope of work — not before."
+      }
+    ],
+    "finalCta": {
+      "heading": "Not sure which procedure applies to your situation?",
+      "body": "Write a few sentences about your case. We usually reply within one business day.",
+      "cta": "Describe your case"
+    }
+  },
+  "services": {
+    "karta-pobytu-czasowego": {
+      "title": "Temporary residence card",
+      "summary": "Temporary residence permit — work, study, staying with family, or another basis.",
+      "intro": "A temporary residence permit is the most common way to legalize a stay in Poland. The application is filed in person at the voivodeship office responsible for the place of stay, no later than the last day of legal stay.",
+      "who": [
+        "People working in Poland under a contract",
+        "Students and doctoral candidates",
+        "Family members of someone living in Poland",
+        "People running a business"
+      ],
+      "documents": [
+        "A completed application and four photographs",
+        "A valid travel document (passport) with a copy of every page",
+        "Documents confirming the purpose of stay (contract, university certificate, marriage certificate)",
+        "Proof of health insurance",
+        "Documents confirming a stable source of income",
+        "Proof of address"
+      ],
+      "help": [
+        "We work out the correct legal basis for the application and check whether the deadline still holds",
+        "We assemble and verify the documents before filing",
+        "We draft the justification for the application",
+        "We respond to office requests to complete missing information",
+        "We represent you in the proceedings under a power of attorney"
+      ]
+    },
+    "pobyt-staly": {
+      "title": "Permanent residence and long-term EU resident status",
+      "summary": "An indefinite permit for holders of the Pole's Card, spouses of Polish citizens, and after years of legal stay.",
+      "intro": "A permanent residence permit is issued for an indefinite period, though the residence card itself must be renewed every ten years. Long-term EU resident status is a separate procedure, available after an uninterrupted stay in Poland.",
+      "who": [
+        "Holders of the Pole's Card",
+        "Spouses of Polish citizens, after the required period of marriage and residence",
+        "Children of Polish citizens or of people with a permanent residence permit",
+        "People after the required period of uninterrupted legal stay"
+      ],
+      "documents": [
+        "A completed application and four photographs",
+        "A valid travel document with a copy",
+        "Documents confirming the basis for applying for the permit",
+        "Documents confirming an uninterrupted stay in Poland",
+        "For EU resident status: proof of Polish language knowledge, stable income and insurance"
+      ],
+      "help": [
+        "We check whether the period of stay counts as uninterrupted",
+        "We choose whichever procedure is more advantageous for your situation",
+        "We assemble documentation confirming your residence history",
+        "We handle correspondence with the office"
+      ]
+    },
+    "zezwolenie-na-prace": {
+      "title": "Work permit",
+      "summary": "Type A and C permits, declarations of entrusting work, seasonal work — for both employee and employer.",
+      "intro": "It is the employer, not the foreign national, who applies for a work permit. We help both sides: the employee to check that their work is legal, and the employer to run the procedure without formal errors.",
+      "who": [
+        "Employers hiring foreign nationals",
+        "Employees changing employer or position",
+        "Temporary employment agencies",
+        "People doing seasonal work"
+      ],
+      "documents": [
+        "The employer's application together with the company's registration documents",
+        "The foreign national's travel document",
+        "Documents confirming qualifications, if required for the position",
+        "The starost's opinion, if required",
+        "Proof of fee payment"
+      ],
+      "help": [
+        "We work out which type of permit applies to the position",
+        "We check whether a labour market test is required",
+        "We prepare the documentation on the employer's side",
+        "We advise on changes to employment terms while the permit is valid"
+      ]
+    },
+    "zaproszenie-dla-rodziny": {
+      "title": "Invitation for family",
+      "summary": "Registering an invitation in the register of invitations — a document family members need for a visa application.",
+      "intro": "An invitation registered by the voivode confirms that the host will provide accommodation and cover the costs of stay for the invited person. It is one of the documents submitted with a visa application.",
+      "who": [
+        "People inviting family members for a visit",
+        "Foreign nationals with a valid residence permit in Poland",
+        "Polish citizens inviting relatives from abroad"
+      ],
+      "documents": [
+        "An application to register the invitation",
+        "A document confirming legal title to the property",
+        "Documents confirming the ability to cover the costs of stay",
+        "The host's identity document"
+      ],
+      "help": [
+        "We complete the application and check the required financial thresholds",
+        "We assemble the documents relating to the property",
+        "We explain how the invitation is assessed in the visa procedure"
+      ]
+    },
+    "wymiana-prawa-jazdy": {
+      "title": "Driving licence exchange",
+      "summary": "Exchanging a foreign driving licence for a Polish one, without retaking a course where possible.",
+      "intro": "A foreign driving licence can be exchanged for a Polish one if it was issued by a country that is party to the relevant convention. In some cases a theory exam is required; in others the exchange happens without one.",
+      "who": [
+        "People with a driving licence issued outside the European Union",
+        "People whose period of recognition for a foreign document is ending",
+        "Professional drivers who need a Polish document"
+      ],
+      "documents": [
+        "An application for the licence exchange",
+        "The original foreign driving licence together with a sworn translation",
+        "A photograph meeting the requirements",
+        "A document confirming residence in Poland"
+      ],
+      "help": [
+        "We check whether the document is eligible for exchange and whether an exam is required",
+        "We arrange the sworn translation",
+        "We file the application at the communications department"
+      ]
+    },
+    "pesel-i-meldunek": {
+      "title": "PESEL number and address registration",
+      "summary": "Assigning a PESEL number and registering an address — the basis for tax matters, healthcare and e-government services.",
+      "intro": "A PESEL number and address registration open access to most official matters: tax settlements, registering with a doctor, setting up a Trusted Profile. Both are handled at the district office.",
+      "who": [
+        "People who have just moved to Poland",
+        "People changing their place of residence",
+        "Parents registering a child born in Poland"
+      ],
+      "documents": [
+        "An identity document",
+        "A document confirming legal title to the property or the owner's consent",
+        "An application for a PESEL number stating the legal basis",
+        "A form reporting permanent or temporary residence"
+      ],
+      "help": [
+        "We work out the correct legal basis for assigning the PESEL number",
+        "We prepare the forms and check the property documents",
+        "We arrange an appointment at the district office"
+      ]
+    },
+    "profil-zaufany": {
+      "title": "Trusted Profile",
+      "summary": "Setting up and confirming a Trusted Profile — an electronic signature for official matters.",
+      "intro": "A Trusted Profile lets you handle official matters online and sign applications electronically. Setting it up requires a PESEL number and identity confirmation at a confirmation point or through Polish online banking.",
+      "who": [
+        "People who already have a PESEL number",
+        "People filing applications through mObywatel or ePUAP",
+        "Business owners handling company matters online"
+      ],
+      "documents": [
+        "PESEL number",
+        "An identity document",
+        "Access to Polish online banking, or a visit to a confirmation point"
+      ],
+      "help": [
+        "We walk you through the registration step by step",
+        "We point out the fastest available method of identity confirmation",
+        "We help with your first applications filed electronically"
+      ]
+    }
+  },
+  "knowledgeBase": {
+    "metaTitle": "Knowledge base",
+    "metaDescription": "Every residence and related procedure we handle — who it's for, which documents it requires and what the firm actually does.",
+    "title": "Knowledge base",
+    "intro": "Every procedure we handle has its own page here: who it's for, which documents to prepare and exactly what the firm does at each stage."
+  },
+  "serviceDetail": {
+    "backLink": "Back to the knowledge base",
+    "whoHeading": "Who this is for",
+    "documentsHeading": "Documents you'll need",
+    "documentsNote": "An indicative list — the exact documents depend on the basis of the application.",
+    "helpHeading": "What we do",
+    "consultHeading": "Book a consultation",
+    "consultBody": "Tell us what stage your case is at. Select {service} in the form and we'll get back to you with what documents are still missing.",
+    "consultCta": "Go to the form"
+  },
+  "about": {
+    "metaTitle": "About the firm",
+    "metaDescription": "An immigration law firm in Warsaw handling residence cases for foreign nationals.",
+    "title": "About the firm",
+    "lede": "Where immigration law meets humanity",
+    "paragraphs": [
+      "Residence cases are rarely just a formality. Behind every application is a job, a home, a child's school, or a deadline that starts running at the worst possible moment. That's why the first conversation is about the situation, not the form.",
+      "We handle cases before the Mazovian Voivodeship Office and Warsaw's district offices. We deal with legalizing residence and work, as well as the related matters that make everyday life in Poland harder without them: a PESEL number, address registration, driving licence exchange, or a Trusted Profile.",
+      "Clients talk to us in the languages they actually know. We handle cases in Polish, English, Ukrainian and Russian."
+    ],
+    "firstCall": {
+      "heading": "The first conversation",
+      "body": "Describe your case through the form or give us a call. We'll work out whether it's a case we can take on and what needs to be prepared.",
+      "cta": "Go to contact"
+    }
+  },
+  "contactPage": {
+    "metaTitle": "Contact",
+    "metaDescription": "Describe your residence case. An immigration law firm in Warsaw — residence cards, work permits, PESEL number and address registration.",
+    "title": "Describe your case",
+    "intro": "The more detail you give, the more specific our answer will be. A few sentences are enough — nothing needs to be attached at this stage.",
+    "loadingForm": "Loading the form…",
+    "directHeading": "Direct contact",
+    "hoursHeading": "Hours",
+    "languagesHeading": "Languages",
+    "languagesList": "Polish, English, Ukrainian, Russian"
+  },
+  "contactForm": {
+    "fields": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone (optional)",
+      "matter": "What the case is about",
+      "matterPlaceholder": "Choose from the list",
+      "matterOther": "Something else",
+      "message": "Describe your case",
+      "messagePlaceholder": "What stage the case is at, which documents you already have, whether any deadlines are running.",
+      "company": "Company name",
+      "consent": "I consent to the processing of my personal data for the purpose of responding to my enquiry, in accordance with the privacy policy."
+    },
+    "errors": {
+      "name": "Please enter your full name.",
+      "tooLong": "This field is too long.",
+      "email": "Please enter a valid email address.",
+      "matter": "Please choose a case from the list.",
+      "messageMin": "Please describe your case in at least 20 characters.",
+      "messageMax": "The message is too long.",
+      "consent": "Consent is required so we can respond to your message."
+    },
+    "submit": "Send message",
+    "submitting": "Sending…",
+    "sentTitle": "Message sent",
+    "sentBody": "We usually reply within one business day. If the matter is urgent, call us — we'll deal with it right away.",
+    "sendAnother": "Send another message",
+    "api": {
+      "rateLimited": "Too many attempts. Please try again in a moment.",
+      "invalid": "The form contains errors.",
+      "turnstileFailed": "Verification failed. Refresh the page and try again.",
+      "sendFailed": "The message could not be sent. Please call or email us instead.",
+      "genericSendFailed": "The message could not be sent."
+    }
+  },
+  "footer": {
+    "contactHeading": "Contact",
+    "hours": {
+      "weekdays": "Monday – Friday",
+      "weekdaysTime": "9:00 AM – 5:00 PM",
+      "saturday": "Saturday",
+      "saturdayTime": "by appointment"
+    },
+    "servicesHeading": "What we handle",
+    "privacyLink": "Privacy policy"
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "sections": {
+      "administrator": {
+        "heading": "Data controller",
+        "body": "The controller of personal data is {entity}, {street}, {postcode} {city}. Contact for personal data matters: {email}."
+      },
+      "scope": {
+        "heading": "Scope and purpose of processing",
+        "body": "Data provided through the contact form (full name, email address, optionally a phone number, and the message content) is processed solely to respond to the enquiry, on the basis of the data subject's consent (Article 6(1)(a) GDPR)."
+      },
+      "retention": {
+        "heading": "Retention period",
+        "body": "TODO: define the retention period for correspondence and the rules for deleting messages that did not lead to taking on a case."
+      },
+      "recipients": {
+        "heading": "Recipients of data",
+        "body": "Messages sent through the form are delivered via an email service provider. The site is hosted by Vercel Inc. TODO: complete the list of processors and add information about any transfer of data outside the EEA."
+      },
+      "rights": {
+        "heading": "Rights of the data subject",
+        "body": "You have the right to access your data, to rectify it, to have it erased or its processing restricted, the right to data portability, to object, to withdraw consent at any time, and to lodge a complaint with the President of the Personal Data Protection Office."
+      },
+      "cookies": {
+        "heading": "Cookies",
+        "body": "The site does not use cookies for analytics or marketing purposes. Once analytics tools are added, a consent banner will need to be implemented and this section updated."
+      }
+    }
+  },
+  "notFound": {
+    "title": "This page doesn't exist",
+    "body": "The address is outdated or contains a typo. The range of matters we handle is on the homepage.",
+    "cta": "Back to the homepage"
+  }
+}

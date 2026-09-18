@@ -1,15 +1,20 @@
 "use client";
 
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { services } from "@/content/services";
-import { enquirySchema } from "@/lib/schema";
+import { serviceSlugs } from "@/content/services";
+import { createEnquirySchema } from "@/lib/schema";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
 const turnstileKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 export function ContactForm() {
+  const locale = useLocale();
+  const t = useTranslations("contactForm");
+  const tServices = useTranslations("services");
+
   // Service pages link here as /kontakt?sprawa=karta-pobytu-czasowego so the
   // right procedure is already chosen when the form loads.
   const preselected = useSearchParams().get("sprawa") ?? "";
@@ -56,9 +61,11 @@ export function ContactForm() {
       consent: data.get("consent") === "on",
       company: String(data.get("company") ?? ""),
       turnstileToken: String(data.get("cf-turnstile-response") ?? ""),
+      locale,
     };
 
-    const parsed = enquirySchema.safeParse(payload);
+    const schema = createEnquirySchema((key) => t(`errors.${key}`));
+    const parsed = schema.safeParse(payload);
     if (!parsed.success) {
       const fieldErrors: Record<string, string> = {};
       for (const issue of parsed.error.issues) {
@@ -81,7 +88,7 @@ export function ContactForm() {
 
       if (!response.ok) {
         const body = await response.json().catch(() => null);
-        throw new Error(body?.error ?? "Nie udało się wysłać wiadomości.");
+        throw new Error(body?.error ?? t("api.genericSendFailed"));
       }
 
       setStatus("sent");
@@ -89,9 +96,7 @@ export function ContactForm() {
     } catch (error) {
       setStatus("error");
       setFormError(
-        error instanceof Error
-          ? error.message
-          : "Nie udało się wysłać wiadomości.",
+        error instanceof Error ? error.message : t("api.genericSendFailed"),
       );
     }
   }
@@ -99,17 +104,14 @@ export function ContactForm() {
   if (status === "sent") {
     return (
       <div className="border-l-4 border-burgundy bg-beige-pale p-8">
-        <h2 className="text-xl">Wiadomość wysłana</h2>
-        <p className="mt-3 leading-relaxed text-muted">
-          Odpowiadamy zwykle w ciągu jednego dnia roboczego. Jeżeli sprawa jest
-          pilna, zadzwoń — wtedy zajmiemy się nią od razu.
-        </p>
+        <h2 className="text-xl">{t("sentTitle")}</h2>
+        <p className="mt-3 leading-relaxed text-muted">{t("sentBody")}</p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
           className="mt-6 text-burgundy underline underline-offset-4"
         >
-          Wyślij kolejną wiadomość
+          {t("sendAnother")}
         </button>
       </div>
     );
@@ -117,7 +119,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
-      <Field label="Imię i nazwisko" name="name" error={errors.name} required>
+      <Field label={t("fields.name")} name="name" error={errors.name} required>
         <input
           id="name"
           name="name"
@@ -128,7 +130,7 @@ export function ContactForm() {
       </Field>
 
       <div className="grid gap-6 sm:grid-cols-2">
-        <Field label="E-mail" name="email" error={errors.email} required>
+        <Field label={t("fields.email")} name="email" error={errors.email} required>
           <input
             id="email"
             name="email"
@@ -138,7 +140,7 @@ export function ContactForm() {
           />
         </Field>
 
-        <Field label="Telefon (opcjonalnie)" name="phone" error={errors.phone}>
+        <Field label={t("fields.phone")} name="phone" error={errors.phone}>
           <input
             id="phone"
             name="phone"
@@ -149,36 +151,36 @@ export function ContactForm() {
         </Field>
       </div>
 
-      <Field label="Czego dotyczy sprawa" name="matter" error={errors.matter} required>
+      <Field label={t("fields.matter")} name="matter" error={errors.matter} required>
         <select
           id="matter"
           name="matter"
           defaultValue={preselected}
           className={inputClass(errors.matter)}
         >
-          <option value="">Wybierz z listy</option>
-          {services.map((service) => (
-            <option key={service.slug} value={service.slug}>
-              {service.title}
+          <option value="">{t("fields.matterPlaceholder")}</option>
+          {serviceSlugs.map((slug) => (
+            <option key={slug} value={slug}>
+              {tServices(`${slug}.title`)}
             </option>
           ))}
-          <option value="inna">Inna sprawa</option>
+          <option value="inna">{t("fields.matterOther")}</option>
         </select>
       </Field>
 
-      <Field label="Opis sprawy" name="message" error={errors.message} required>
+      <Field label={t("fields.message")} name="message" error={errors.message} required>
         <textarea
           id="message"
           name="message"
           rows={7}
-          placeholder="Na jakim etapie jest sprawa, jakie dokumenty już masz, czy są terminy, które biegną."
+          placeholder={t("fields.messagePlaceholder")}
           className={inputClass(errors.message)}
         />
       </Field>
 
       {/* Honeypot: hidden from people, visible to bots. */}
       <div aria-hidden="true" className="absolute left-[-9999px]">
-        <label htmlFor="company">Nazwa firmy</label>
+        <label htmlFor="company">{t("fields.company")}</label>
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
@@ -189,10 +191,7 @@ export function ContactForm() {
             type="checkbox"
             className="mt-1 size-4 shrink-0 accent-[#6b1f2e]"
           />
-          <span>
-            Wyrażam zgodę na przetwarzanie moich danych osobowych w celu
-            udzielenia odpowiedzi na zapytanie, zgodnie z polityką prywatności.
-          </span>
+          <span>{t("fields.consent")}</span>
         </label>
         {errors.consent && (
           <p className="mt-2 text-sm text-burgundy">{errors.consent}</p>
@@ -212,7 +211,7 @@ export function ContactForm() {
         disabled={status === "sending"}
         className="bg-burgundy px-7 py-3 text-white hover:bg-burgundy-deep disabled:opacity-60"
       >
-        {status === "sending" ? "Wysyłanie…" : "Wyślij wiadomość"}
+        {status === "sending" ? t("submitting") : t("submit")}
       </button>
     </form>
   );
