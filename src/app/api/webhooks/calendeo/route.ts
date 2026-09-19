@@ -165,6 +165,10 @@ export function GET() {
   return NextResponse.json({ ok: true });
 }
 
+export function HEAD() {
+  return new NextResponse(null, { status: 200 });
+}
+
 export function OPTIONS() {
   return new NextResponse(null, {
     status: 204,
@@ -180,9 +184,21 @@ export async function POST(request: Request) {
   const rawBody = await request.text();
   const secret = process.env.CALENDEO_WEBHOOK_SECRET;
 
+  // TEMPORARY diagnostic logging — remove once Calendeo's reachability
+  // check and real deliveries are both confirmed working. Safe to keep
+  // short-term: logs headers/body shape, not secrets.
+  console.info("[calendeo] incoming POST", {
+    headers: Object.fromEntries(request.headers.entries()),
+    bodyLength: rawBody.length,
+    bodyPreview: rawBody.slice(0, 500),
+  });
+
   if (secret) {
     const signatureHeader = request.headers.get("x-calendeo-signature");
     if (!verifySignature(signatureHeader, rawBody, secret)) {
+      console.warn("[calendeo] signature check failed", {
+        signatureHeaderPresent: Boolean(signatureHeader),
+      });
       return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
     }
   }
