@@ -1,0 +1,409 @@
+{
+  "a11y": {
+    "skipToContent": "Przejdź do treści"
+  },
+  "nav": {
+    "logoSubtitle": "Kancelaria Imigracyjna",
+    "services": "Usługi",
+    "about": "O kancelarii",
+    "knowledgeBase": "Baza wiedzy",
+    "contact": "Kontakt",
+    "call": "Zadzwoń",
+    "menu": "Menu",
+    "close": "Zamknij",
+    "language": "Wybierz język"
+  },
+  "site": {
+    "city": "Warszawa",
+    "tagline": "Tam, gdzie prawo imigracyjne spotyka człowieka",
+    "description": "Kancelaria imigracyjna w Warszawie. Karty pobytu, zezwolenia na pracę, zaproszenia dla rodziny, PESEL i meldunek, wymiana prawa jazdy."
+  },
+  "scheduleBanner": {
+    "heading": "Zarezerwuj konsultację online",
+    "body": "Wybierz termin, który ci pasuje — bez wcześniejszego telefonu.",
+    "cta": "Zarezerwuj termin"
+  },
+  "schedulePage": {
+    "metaTitle": "Zarezerwuj termin",
+    "metaDescription": "Zarezerwuj konsultację z kancelarią bezpośrednio online.",
+    "title": "Zarezerwuj termin",
+    "intro": "Wybierz termin poniżej, a potwierdzimy szczegóły e-mailem.",
+    "iframeTitle": "Kalendarz rezerwacji terminów"
+  },
+  "home": {
+    "metaTitle": "MCH Kancelaria Imigracyjna — Warszawa",
+    "metaDescription": "Kancelaria imigracyjna w Warszawie. Karty pobytu, zezwolenia na pracę, zaproszenia dla rodziny, PESEL i meldunek, wymiana prawa jazdy.",
+    "tagline": "Tam, gdzie prawo imigracyjne spotyka człowieka",
+    "title": "Sprawy pobytowe prowadzone od początku do końca",
+    "lede": "Kancelaria imigracyjna w Warszawie. Kompletujemy dokumenty, pilnujemy terminów i prowadzimy korespondencję z urzędem, żeby nie trzeba było robić tego samemu.",
+    "languagesLine": "Rozmawiamy po: polski · english · українська · русский",
+    "ctaDescribe": "Opisz swoją sprawę",
+    "caseFinder": {
+      "label": "Wybierz rodzaj sprawy",
+      "placeholder": "Czego dotyczy twoja sprawa?",
+      "cta": "Zobacz procedurę"
+    },
+    "why": {
+      "heading": "Dlaczego z nami",
+      "items": [
+        {
+          "title": "Prowadzimy sprawę od początku do końca",
+          "body": "Jeden zespół pilnuje wniosku, terminów i korespondencji z urzędem — nie musisz koordynować kilku osób naraz."
+        },
+        {
+          "title": "Rozmawiamy w twoim języku",
+          "body": "Obsługujemy sprawy po: polsku, angielsku, ukraińsku, rosyjsku."
+        },
+        {
+          "title": "Wiesz, na jakim etapie jest sprawa",
+          "body": "Informujemy o każdym piśmie z urzędu i o tym, co dalej trzeba zrobić — bez pytania o status."
+        }
+      ]
+    },
+    "process": {
+      "heading": "Jak wygląda współpraca",
+      "steps": [
+        {
+          "title": "Rozmowa wstępna",
+          "body": "Opisujesz sytuację i pokazujesz dokumenty, które już masz. Ustalamy, która procedura jest właściwa i czy termin jest zachowany."
+        },
+        {
+          "title": "Kompletowanie wniosku",
+          "body": "Przygotowujemy listę brakujących dokumentów, sprawdzamy tłumaczenia i piszemy uzasadnienie wniosku."
+        },
+        {
+          "title": "Postępowanie",
+          "body": "Składamy wniosek, odbieramy korespondencję z urzędu i odpowiadamy na wezwania do uzupełnienia braków."
+        }
+      ]
+    },
+    "testimonialsHeading": "Co mówią klienci",
+    "testimonials": [
+      {
+        "quote": "Wiedziałam na każdym etapie, co się dzieje ze sprawą i co jeszcze trzeba dostarczyć. Nic nie umknęło.",
+        "name": "Olena K.",
+        "context": "Karta pobytu czasowego"
+      },
+      {
+        "quote": "Sprawa wydawała się skomplikowana, dopóki nie usiadłem z kimś, kto ją faktycznie prowadzi codziennie.",
+        "name": "Marco R.",
+        "context": "Zezwolenie na pracę"
+      },
+      {
+        "quote": "Odpowiedzi przychodziły szybko, po angielsku, bez zbędnego prawniczego żargonu.",
+        "name": "Aigerim T.",
+        "context": "Pobyt stały"
+      }
+    ],
+    "faqHeading": "Najczęstsze pytania",
+    "faq": [
+      {
+        "question": "Czy muszę przyjechać do kancelarii, żeby zacząć sprawę?",
+        "answer": "Nie. Pierwszą rozmowę można przeprowadzić przez formularz kontaktowy albo telefonicznie. Do osobistego stawiennictwa w urzędzie dochodzi zwykle na etapie złożenia wniosku — informujemy wcześniej, kiedy jest to konieczne."
+      },
+      {
+        "question": "Jak długo trwa postępowanie o kartę pobytu?",
+        "answer": "To zależy od urzędu i rodzaju sprawy — od kilku miesięcy do ponad roku w okresach wzmożonego ruchu. Na etapie rozmowy wstępnej mówimy, jakiego czasu realnie można się spodziewać w danej procedurze."
+      },
+      {
+        "question": "Co się dzieje, jeśli termin pobytu minie w trakcie postępowania?",
+        "answer": "Złożenie kompletnego wniosku przed upływem legalnego pobytu zwykle uprawnia do pozostania w Polsce na czas postępowania — potwierdza to odpowiedni stempel w paszporcie. Sprawdzamy to indywidualnie przy każdej sprawie."
+      },
+      {
+        "question": "Prowadzicie sprawy poza Warszawą?",
+        "answer": "Sprawy, w których właściwy jest Mazowiecki Urząd Wojewódzki lub urzędy dzielnic Warszawy, prowadzimy w całości. W innych województwach doradzamy, ale nie reprezentujemy przed lokalnym urzędem."
+      },
+      {
+        "question": "Ile kosztuje prowadzenie sprawy?",
+        "answer": "Koszt zależy od rodzaju procedury i jej złożoności. Wycenę podajemy po rozmowie wstępnej, kiedy znamy już zakres pracy — nie wcześniej."
+      }
+    ],
+    "finalCta": {
+      "heading": "Nie wiesz, która procedura dotyczy twojej sytuacji?",
+      "body": "Napisz kilka zdań o swojej sprawie. Odpowiadamy zwykle w ciągu jednego dnia roboczego.",
+      "cta": "Opisz swoją sprawę"
+    }
+  },
+  "services": {
+    "karta-pobytu-czasowego": {
+      "title": "Karta pobytu czasowego",
+      "summary": "Zezwolenie na pobyt czasowy — praca, studia, pobyt z rodziną lub inna podstawa.",
+      "intro": "Zezwolenie na pobyt czasowy to najczęstsza droga legalizacji pobytu w Polsce. Wniosek składa się osobiście w urzędzie wojewódzkim właściwym dla miejsca pobytu, najpóźniej w ostatnim dniu legalnego pobytu.",
+      "who": [
+        "Osoby pracujące w Polsce na podstawie umowy",
+        "Studenci i doktoranci",
+        "Członkowie rodziny osoby mieszkającej w Polsce",
+        "Osoby prowadzące działalność gospodarczą"
+      ],
+      "documents": [
+        "Wypełniony wniosek i cztery fotografie",
+        "Ważny dokument podróży (paszport) wraz z kopią wszystkich stron",
+        "Dokumenty potwierdzające cel pobytu (umowa, zaświadczenie z uczelni, akt małżeństwa)",
+        "Potwierdzenie ubezpieczenia zdrowotnego",
+        "Dokumenty potwierdzające źródło stabilnego dochodu",
+        "Potwierdzenie miejsca zamieszkania"
+      ],
+      "help": [
+        "Ustalamy właściwą podstawę prawną wniosku i sprawdzamy, czy termin jest zachowany",
+        "Kompletujemy i weryfikujemy dokumenty przed złożeniem",
+        "Przygotowujemy uzasadnienie wniosku",
+        "Odpowiadamy na wezwania urzędu do uzupełnienia braków",
+        "Reprezentujemy w postępowaniu na podstawie pełnomocnictwa"
+      ]
+    },
+    "pobyt-staly": {
+      "title": "Pobyt stały i rezydent długoterminowy UE",
+      "summary": "Zezwolenie bezterminowe dla osób z Kartą Polaka, małżonków obywateli RP i po latach legalnego pobytu.",
+      "intro": "Zezwolenie na pobyt stały wydawane jest na czas nieoznaczony, a sama karta pobytu wymaga wymiany co dziesięć lat. Zezwolenie na pobyt rezydenta długoterminowego UE to odrębna procedura, dostępna po nieprzerwanym pobycie w Polsce.",
+      "who": [
+        "Posiadacze Karty Polaka",
+        "Małżonkowie obywateli polskich po wymaganym okresie małżeństwa i pobytu",
+        "Dzieci obywateli polskich lub osób z zezwoleniem na pobyt stały",
+        "Osoby po wymaganym okresie nieprzerwanego legalnego pobytu"
+      ],
+      "documents": [
+        "Wypełniony wniosek i cztery fotografie",
+        "Ważny dokument podróży wraz z kopią",
+        "Dokumenty potwierdzające podstawę ubiegania się o zezwolenie",
+        "Dokumenty potwierdzające nieprzerwany pobyt w Polsce",
+        "Dla rezydenta UE: potwierdzenie znajomości języka polskiego, stabilnego dochodu i ubezpieczenia"
+      ],
+      "help": [
+        "Sprawdzamy, czy okres pobytu liczy się jako nieprzerwany",
+        "Dobieramy procedurę korzystniejszą w danej sytuacji",
+        "Kompletujemy dokumentację potwierdzającą historię pobytu",
+        "Prowadzimy korespondencję z urzędem"
+      ]
+    },
+    "zezwolenie-na-prace": {
+      "title": "Zezwolenie na pracę",
+      "summary": "Zezwolenia typu A i C, oświadczenia o powierzeniu pracy, praca sezonowa — dla pracownika i pracodawcy.",
+      "intro": "O zezwolenie na pracę występuje pracodawca, a nie cudzoziemiec. Pomagamy obu stronom: pracownikowi sprawdzić, czy jego praca jest legalna, a pracodawcy przeprowadzić procedurę bez błędów formalnych.",
+      "who": [
+        "Pracodawcy zatrudniający cudzoziemców",
+        "Pracownicy zmieniający pracodawcę lub stanowisko",
+        "Agencje pracy tymczasowej",
+        "Osoby wykonujące pracę sezonową"
+      ],
+      "documents": [
+        "Wniosek pracodawcy wraz z dokumentami rejestrowymi firmy",
+        "Dokument podróży cudzoziemca",
+        "Dokumenty potwierdzające kwalifikacje, jeżeli są wymagane na danym stanowisku",
+        "Informacja starosty, jeżeli jest wymagana",
+        "Dowód wniesienia opłaty"
+      ],
+      "help": [
+        "Ustalamy, który typ zezwolenia jest właściwy dla danego stanowiska",
+        "Sprawdzamy, czy wymagany jest test rynku pracy",
+        "Przygotowujemy dokumentację po stronie pracodawcy",
+        "Doradzamy przy zmianie warunków zatrudnienia w trakcie ważności zezwolenia"
+      ]
+    },
+    "zaproszenie-dla-rodziny": {
+      "title": "Zaproszenie dla rodziny",
+      "summary": "Wpis zaproszenia do ewidencji zaproszeń — dokument potrzebny bliskim starającym się o wizę.",
+      "intro": "Zaproszenie wpisane do ewidencji przez wojewodę potwierdza, że zapraszający zapewnia zapraszanemu zakwaterowanie i pokrycie kosztów pobytu. Jest jednym z dokumentów przedkładanych przy wniosku wizowym.",
+      "who": [
+        "Osoby zapraszające członków rodziny w odwiedziny",
+        "Cudzoziemcy z ważnym zezwoleniem na pobyt w Polsce",
+        "Obywatele polscy zapraszający bliskich z zagranicy"
+      ],
+      "documents": [
+        "Wniosek o wpisanie zaproszenia do ewidencji",
+        "Dokument potwierdzający tytuł prawny do lokalu",
+        "Dokumenty potwierdzające możliwość pokrycia kosztów pobytu",
+        "Dokument tożsamości zapraszającego"
+      ],
+      "help": [
+        "Wypełniamy wniosek i sprawdzamy wymagane progi finansowe",
+        "Kompletujemy dokumenty dotyczące lokalu",
+        "Wyjaśniamy, jak zaproszenie jest oceniane w procedurze wizowej"
+      ]
+    },
+    "wymiana-prawa-jazdy": {
+      "title": "Wymiana prawa jazdy",
+      "summary": "Wymiana zagranicznego prawa jazdy na polskie, bez ponownego kursu tam, gdzie to możliwe.",
+      "intro": "Zagraniczne prawo jazdy można wymienić na polskie, jeżeli wydał je kraj będący stroną odpowiedniej konwencji. W części przypadków wymagany jest egzamin teoretyczny, w innych wymiana odbywa się bez egzaminu.",
+      "who": [
+        "Osoby z prawem jazdy wydanym poza Unią Europejską",
+        "Osoby, którym kończy się okres uznawania zagranicznego dokumentu",
+        "Kierowcy zawodowi potrzebujący polskiego dokumentu"
+      ],
+      "documents": [
+        "Wniosek o wymianę prawa jazdy",
+        "Oryginał zagranicznego prawa jazdy wraz z tłumaczeniem przysięgłym",
+        "Fotografia spełniająca wymogi",
+        "Dokument potwierdzający pobyt w Polsce"
+      ],
+      "help": [
+        "Sprawdzamy, czy dokument podlega wymianie i czy wymagany jest egzamin",
+        "Organizujemy tłumaczenie przysięgłe",
+        "Składamy wniosek w wydziale komunikacji"
+      ]
+    },
+    "pesel-i-meldunek": {
+      "title": "PESEL i meldunek",
+      "summary": "Nadanie numeru PESEL i zameldowanie — podstawa do rozliczeń, opieki zdrowotnej i e-usług.",
+      "intro": "Numer PESEL i zameldowanie otwierają dostęp do większości spraw urzędowych: rozliczenia podatkowego, rejestracji u lekarza, założenia Profilu Zaufanego. Obie sprawy załatwia się w urzędzie dzielnicy.",
+      "who": [
+        "Osoby, które właśnie przeprowadziły się do Polski",
+        "Osoby zmieniające adres zamieszkania",
+        "Rodzice rejestrujący dziecko urodzone w Polsce"
+      ],
+      "documents": [
+        "Dokument tożsamości",
+        "Dokument potwierdzający tytuł prawny do lokalu lub zgoda właściciela",
+        "Wniosek o nadanie numeru PESEL ze wskazaniem podstawy prawnej",
+        "Formularz zgłoszenia pobytu stałego lub czasowego"
+      ],
+      "help": [
+        "Ustalamy właściwą podstawę prawną nadania numeru PESEL",
+        "Przygotowujemy formularze i sprawdzamy dokumenty lokalowe",
+        "Umawiamy wizytę w urzędzie dzielnicy"
+      ]
+    },
+    "profil-zaufany": {
+      "title": "Profil Zaufany",
+      "summary": "Założenie i potwierdzenie Profilu Zaufanego — podpis elektroniczny do spraw urzędowych.",
+      "intro": "Profil Zaufany pozwala załatwiać sprawy urzędowe online i podpisywać wnioski elektronicznie. Do jego założenia potrzebny jest numer PESEL oraz potwierdzenie tożsamości w punkcie potwierdzającym lub przez bankowość elektroniczną.",
+      "who": [
+        "Osoby z nadanym numerem PESEL",
+        "Osoby składające wnioski przez mObywatel lub ePUAP",
+        "Przedsiębiorcy prowadzący sprawy firmowe online"
+      ],
+      "documents": [
+        "Numer PESEL",
+        "Dokument tożsamości",
+        "Dostęp do polskiej bankowości elektronicznej albo wizyta w punkcie potwierdzającym"
+      ],
+      "help": [
+        "Prowadzimy krok po kroku przez rejestrację",
+        "Wskazujemy najszybszą dostępną metodę potwierdzenia tożsamości",
+        "Pomagamy przy pierwszych wnioskach składanych elektronicznie"
+      ]
+    }
+  },
+  "knowledgeBase": {
+    "metaTitle": "Baza wiedzy",
+    "metaDescription": "Wszystkie procedury pobytowe i okołopobytowe, które prowadzimy — dla kogo są, jakie dokumenty wymagają i jak wygląda pomoc kancelarii.",
+    "title": "Baza wiedzy",
+    "intro": "Każda procedura, którą prowadzimy, ma tu osobną stronę: dla kogo jest, jakie dokumenty przygotować i co konkretnie robi kancelaria na każdym etapie."
+  },
+  "serviceDetail": {
+    "backLink": "Wróć do bazy wiedzy",
+    "whoHeading": "Dla kogo",
+    "documentsHeading": "Potrzebne dokumenty",
+    "documentsNote": "Lista orientacyjna — zakres dokumentów zależy od podstawy wniosku.",
+    "helpHeading": "Co robimy",
+    "consultHeading": "Umów konsultację",
+    "consultBody": "Napisz, na jakim etapie jest twoja sprawa. Wskaż {service} w formularzu, a odezwiemy się z informacją, jakich dokumentów brakuje.",
+    "consultCta": "Przejdź do formularza"
+  },
+  "about": {
+    "metaTitle": "O kancelarii",
+    "metaDescription": "Kancelaria imigracyjna w Warszawie prowadząca sprawy pobytowe cudzoziemców.",
+    "title": "O kancelarii",
+    "lede": "Tam, gdzie prawo imigracyjne spotyka człowieka",
+    "paragraphs": [
+      "Sprawy pobytowe rzadko są tylko formalnością. Za każdym wnioskiem stoi praca, mieszkanie, szkoła dziecka albo termin, który zaczyna biec w najgorszym możliwym momencie. Dlatego pierwsza rozmowa dotyczy sytuacji, a nie formularza.",
+      "Prowadzimy sprawy przed Mazowieckim Urzędem Wojewódzkim i urzędami dzielnic w Warszawie. Zajmujemy się legalizacją pobytu i pracy, a także sprawami okołopobytowymi, bez których codzienne życie w Polsce jest utrudnione: numerem PESEL, meldunkiem, wymianą prawa jazdy czy Profilem Zaufanym.",
+      "Klienci rozmawiają z nami w językach, które znają. Obsługujemy sprawy po polsku, angielsku, ukraińsku i rosyjsku."
+    ],
+    "firstCall": {
+      "heading": "Pierwsza rozmowa",
+      "body": "Opisz sprawę przez formularz albo zadzwoń. Ustalimy, czy sprawa nadaje się do prowadzenia i co trzeba przygotować.",
+      "cta": "Przejdź do kontaktu"
+    }
+  },
+  "contactPage": {
+    "metaTitle": "Kontakt",
+    "metaDescription": "Opisz swoją sprawę pobytową. Kancelaria imigracyjna w Warszawie — karty pobytu, zezwolenia na pracę, PESEL i meldunek.",
+    "title": "Opisz swoją sprawę",
+    "intro": "Im więcej szczegółów podasz, tym konkretniej odpowiemy. Wystarczy kilka zdań — na tym etapie nie trzeba niczego załączać.",
+    "loadingForm": "Wczytywanie formularza…",
+    "directHeading": "Bezpośredni kontakt",
+    "hoursHeading": "Godziny",
+    "languagesHeading": "Języki",
+    "languagesList": "polski, english, українська, русский"
+  },
+  "contactForm": {
+    "fields": {
+      "name": "Imię i nazwisko",
+      "email": "E-mail",
+      "phone": "Telefon (opcjonalnie)",
+      "matter": "Czego dotyczy sprawa",
+      "matterPlaceholder": "Wybierz z listy",
+      "matterOther": "Inna sprawa",
+      "message": "Opis sprawy",
+      "messagePlaceholder": "Na jakim etapie jest sprawa, jakie dokumenty już masz, czy są terminy, które biegną.",
+      "company": "Nazwa firmy",
+      "consent": "Wyrażam zgodę na przetwarzanie moich danych osobowych w celu udzielenia odpowiedzi na zapytanie, zgodnie z polityką prywatności."
+    },
+    "errors": {
+      "name": "Podaj imię i nazwisko.",
+      "tooLong": "To pole jest za długie.",
+      "email": "Podaj poprawny adres e-mail.",
+      "matter": "Wybierz sprawę z listy.",
+      "messageMin": "Opisz sprawę w co najmniej 20 znakach.",
+      "messageMax": "Wiadomość jest za długa.",
+      "consent": "Zgoda jest wymagana, żeby odpowiedzieć na wiadomość."
+    },
+    "submit": "Wyślij wiadomość",
+    "submitting": "Wysyłanie…",
+    "sentTitle": "Wiadomość wysłana",
+    "sentBody": "Odpowiadamy zwykle w ciągu jednego dnia roboczego. Jeżeli sprawa jest pilna, zadzwoń — wtedy zajmiemy się nią od razu.",
+    "sendAnother": "Wyślij kolejną wiadomość",
+    "api": {
+      "rateLimited": "Zbyt wiele prób. Spróbuj ponownie za chwilę.",
+      "invalid": "Formularz zawiera błędy.",
+      "turnstileFailed": "Weryfikacja nie powiodła się. Odśwież stronę i spróbuj ponownie.",
+      "sendFailed": "Nie udało się wysłać wiadomości. Zadzwoń albo napisz e-mail.",
+      "genericSendFailed": "Nie udało się wysłać wiadomości."
+    }
+  },
+  "footer": {
+    "contactHeading": "Kontakt",
+    "hours": {
+      "weekdays": "Poniedziałek – piątek",
+      "weekdaysTime": "9:00 – 17:00",
+      "saturday": "Sobota",
+      "saturdayTime": "po wcześniejszym umówieniu"
+    },
+    "servicesHeading": "Zakres pomocy",
+    "privacyLink": "Polityka prywatności"
+  },
+  "privacy": {
+    "title": "Polityka prywatności",
+    "sections": {
+      "administrator": {
+        "heading": "Administrator danych",
+        "body": "Administratorem danych osobowych jest {entity}, {street}, {postcode} {city}. Kontakt w sprawach danych osobowych: {email}."
+      },
+      "scope": {
+        "heading": "Zakres i cel przetwarzania",
+        "body": "Dane podane w formularzu kontaktowym (imię i nazwisko, adres e-mail, opcjonalnie numer telefonu oraz treść wiadomości) przetwarzane są wyłącznie w celu udzielenia odpowiedzi na zapytanie, na podstawie zgody osoby, której dane dotyczą (art. 6 ust. 1 lit. a RODO)."
+      },
+      "retention": {
+        "heading": "Okres przechowywania",
+        "body": "TODO: określić okres przechowywania korespondencji oraz zasady usuwania wiadomości, które nie doprowadziły do podjęcia sprawy."
+      },
+      "recipients": {
+        "heading": "Odbiorcy danych",
+        "body": "Wiadomości przesyłane przez formularz są dostarczane za pośrednictwem dostawcy usługi poczty elektronicznej. Strona jest hostowana przez Vercel Inc. TODO: uzupełnić listę podmiotów przetwarzających i informację o transferze danych poza EOG."
+      },
+      "rights": {
+        "heading": "Prawa osoby, której dane dotyczą",
+        "body": "Przysługuje prawo dostępu do danych, ich sprostowania, usunięcia lub ograniczenia przetwarzania, prawo do przenoszenia danych, wniesienia sprzeciwu, cofnięcia zgody w dowolnym momencie oraz wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych."
+      },
+      "cookies": {
+        "heading": "Pliki cookie",
+        "body": "Strona nie używa plików cookie do celów analitycznych ani marketingowych. Po dodaniu narzędzi analitycznych konieczne będzie wdrożenie banera zgody i uzupełnienie tej sekcji."
+      }
+    }
+  },
+  "notFound": {
+    "title": "Nie ma takiej strony",
+    "body": "Adres jest nieaktualny albo zawiera literówkę. Zakres spraw, które prowadzimy, jest na stronie głównej.",
+    "cta": "Wróć na stronę główną"
+  }
+}
