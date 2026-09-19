@@ -79,15 +79,29 @@ function verifySignature(header: string | null, rawBody: string, secret: string)
 // }
 // ---------------------------------------------------------------------------
 
-type CalendeoEventType =
-  | "event.created"
-  | "event.accepted"
-  | "event.cancelled"
-  | "event.did_not_attend";
-
-type CalendeoPayload = {
+/**
+ * Every notification shares this envelope — including the reachability
+ * check Calendeo's dashboard sends when you save the webhook URL, which
+ * arrives as a real POST with `event_type: "endpoint.test"` and whatever
+ * (possibly empty) `data` it feels like. That one, plus `event.cancelled`
+ * and `event.did_not_attend`, are acknowledged without ever needing the
+ * full booking shape below — only `event.created`/`event.accepted` do.
+ */
+type CalendeoEnvelope = {
   id: string;
-  eventType: CalendeoEventType;
+  eventType: string;
+  data: unknown;
+};
+
+function parseEnvelope(body: unknown): CalendeoEnvelope | null {
+  if (typeof body !== "object" || body === null) return null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const b = body as Record<string, any>;
+  if (!b.id || !b.event_type) return null;
+  return { id: String(b.id), eventType: String(b.event_type), data: b.data };
+}
+
+type CalendeoBooking = {
   bookingId: string;
   serviceName: string;
   startTime: string;
@@ -98,35 +112,27 @@ type CalendeoPayload = {
   description: string | null;
 };
 
-function parseCalendeoPayload(body: unknown): CalendeoPayload | null {
-  if (typeof body !== "object" || body === null) return null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const b = body as Record<string, any>;
-  const data = b.data;
+function parseBooking(data: unknown): CalendeoBooking | null {
   if (typeof data !== "object" || data === null) return null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const d = data as Record<string, any>;
 
-  const id = b.id;
-  const eventType = b.event_type;
-  const bookingId = data.calendar_event_id;
-  const startTime = data.start_time;
-  const endTime = data.end_time;
-  const clientEmail = data.client?.email;
+  const bookingId = d.calendar_event_id;
+  const startTime = d.start_time;
+  const endTime = d.end_time;
+  const clientEmail = d.client?.email;
 
-  if (!id || !eventType || bookingId === undefined || !startTime || !endTime || !clientEmail) {
-    return null;
-  }
+  if (bookingId === undefined || !startTime || !endTime || !clientEmail) return null;
 
   return {
-    id: String(id),
-    eventType,
     bookingId: String(bookingId),
-    serviceName: data.service_name ? String(data.service_name) : "Consultation",
+    serviceName: d.service_name ? String(d.service_name) : "Consultation",
     startTime: String(startTime),
     endTime: String(endTime),
-    clientName: data.client?.name ? String(data.client.name) : String(clientEmail),
+    clientName: d.client?.name ? String(d.client.name) : String(clientEmail),
     clientEmail: String(clientEmail),
-    clientPhone: data.client?.phone ? String(data.client.phone) : null,
-    description: data.description ? String(data.description) : null,
+    clientPhone: d.client?.phone ? String(d.client.phone) : null,
+    description: d.description ? String(d.description) : null,
   };
 }
 
@@ -206,39 +212,48 @@ export async function POST(request: Request) {
   // as Turnstile in /api/kontakt while the site is still being set up.
 
   const body = JSON.parse(rawBody === "" ? "null" : rawBody);
-  const event = parseCalendeoPayload(body);
+  const envelope = parseEnvelope(body);
 
-  if (!event) {
-    console.error("[calendeo] Unrecognized payload shape:", rawBody);
+  if (!envelope) {
+    console.error("[calendeo] Unrecognized envelope shape:", rawBody);
     return NextResponse.json({ error: "Unrecognized payload shape" }, { status: 400 });
   }
 
   // Only a created-or-accepted booking should get a meeting + email.
-  // Cancellations and no-shows are acknowledged but otherwise ignored here —
-  // deleting an already-created Google Calendar event on cancellation is a
-  // reasonable next step, but needs a persistent calendar_event_id -> Google
-  // event id mapping (not just the in-memory dedupe set) to do reliably.
-  if (event.eventType === "event.cancelled" || event.eventType === "event.did_not_attend") {
-    return NextResponse.json({ ok: true, ignored: event.eventType });
+  // Everything else — the "endpoint.test" reachability check Calendeo sends
+  // when you save the webhook URL, cancellations, no-shows, and any future
+  // event type we don't know about yet — is acknowledged and otherwise
+  // ignored. (Deleting an already-created Google Calendar event on
+  // cancellation is a reasonable next step, but needs a persistent
+  // calendar_event_id -> Google event id mapping, not just the in-memory
+  // dedupe set, to do reliably.)
+  if (envelope.eventType !== "event.created" && envelope.eventType !== "event.accepted") {
+    return NextResponse.json({ ok: true, acknowledged: envelope.eventType });
   }
 
-  if (alreadyProcessed(event.bookingId)) {
+  const booking = parseBooking(envelope.data);
+  if (!booking) {
+    console.error("[calendeo] Unrecognized booking shape:", rawBody);
+    return NextResponse.json({ error: "Unrecognized payload shape" }, { status: 400 });
+  }
+
+  if (alreadyProcessed(booking.bookingId)) {
     return NextResponse.json({ ok: true, deduped: true });
   }
 
   let meeting;
   try {
     meeting = await createMeetingWithMeetLink({
-      bookingId: event.bookingId,
-      attendeeName: event.clientName,
-      attendeeEmail: event.clientEmail,
-      startTime: event.startTime,
-      endTime: event.endTime,
-      summary: `${event.serviceName} — ${event.clientName}`,
+      bookingId: booking.bookingId,
+      attendeeName: booking.clientName,
+      attendeeEmail: booking.clientEmail,
+      startTime: booking.startTime,
+      endTime: booking.endTime,
+      summary: `${booking.serviceName} — ${booking.clientName}`,
       description: [
         "Booked via the website.",
-        event.clientPhone ? `Phone: ${event.clientPhone}` : null,
-        event.description,
+        booking.clientPhone ? `Phone: ${booking.clientPhone}` : null,
+        booking.description,
       ]
         .filter(Boolean)
         .join("\n"),
@@ -252,23 +267,23 @@ export async function POST(request: Request) {
     dateStyle: "full",
     timeStyle: "short",
     timeZone: "Europe/Warsaw",
-  }).format(new Date(event.startTime));
+  }).format(new Date(booking.startTime));
 
   const ics = buildIcsEvent({
-    uid: `${event.bookingId}@mch-kancelaria`,
-    summary: `${event.serviceName} — MCH Kancelaria Imigracyjna`,
+    uid: `${booking.bookingId}@mch-kancelaria`,
+    summary: `${booking.serviceName} — MCH Kancelaria Imigracyjna`,
     description: `Video call: ${meeting.meetLink}`,
     location: meeting.meetLink,
-    startTime: event.startTime,
-    endTime: event.endTime,
+    startTime: booking.startTime,
+    endTime: booking.endTime,
     organizerEmail: site.contact.email,
-    attendeeEmail: event.clientEmail,
-    attendeeName: event.clientName,
+    attendeeEmail: booking.clientEmail,
+    attendeeName: booking.clientName,
   });
 
   if (!resendApiKey) {
     console.info("[calendeo] RESEND_API_KEY not set. Booking processed but no email sent:", {
-      event,
+      booking,
       meetLink: meeting.meetLink,
     });
     return NextResponse.json({ ok: true, delivered: false, meetLink: meeting.meetLink });
@@ -278,12 +293,12 @@ export async function POST(request: Request) {
     const resend = new Resend(resendApiKey);
     const { error } = await resend.emails.send({
       from: process.env.CONTACT_FROM ?? "onboarding@resend.dev",
-      to: event.clientEmail,
-      subject: `Your ${event.serviceName.toLowerCase()} is confirmed`,
+      to: booking.clientEmail,
+      subject: `Your ${booking.serviceName.toLowerCase()} is confirmed`,
       text: [
-        `Hi ${event.clientName},`,
+        `Hi ${booking.clientName},`,
         "",
-        `Your ${event.serviceName.toLowerCase()} is confirmed for ${dateLabel} (Europe/Warsaw time).`,
+        `Your ${booking.serviceName.toLowerCase()} is confirmed for ${dateLabel} (Europe/Warsaw time).`,
         "",
         `Join by Google Meet: ${meeting.meetLink}`,
         "",
