@@ -77,24 +77,6 @@
         }
       ]
     },
-    "testimonialsHeading": "What clients say",
-    "testimonials": [
-      {
-        "quote": "I knew at every stage what was happening with my case and what still needed to be delivered. Nothing slipped through.",
-        "name": "Olena K.",
-        "context": "Temporary residence card"
-      },
-      {
-        "quote": "The case seemed complicated until I sat down with someone who actually handles this every day.",
-        "name": "Marco R.",
-        "context": "Work permit"
-      },
-      {
-        "quote": "Replies came quickly, in English, without unnecessary legal jargon.",
-        "name": "Aigerim T.",
-        "context": "Permanent residence"
-      }
-    ],
     "faqHeading": "Frequently asked questions",
     "faq": [
       {
@@ -117,12 +99,7 @@
         "question": "How much does it cost to have you handle a case?",
         "answer": "The cost depends on the type of procedure and how complex it is. We give a quote after the initial conversation, once we know the scope of work — not before."
       }
-    ],
-    "finalCta": {
-      "heading": "Not sure which procedure applies to your situation?",
-      "body": "Write a few sentences about your case. We usually reply within one business day.",
-      "cta": "Describe your case"
-    }
+    ]
   },
   "services": {
     "karta-pobytu-czasowego": {

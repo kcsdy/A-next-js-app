@@ -77,24 +77,6 @@
         }
       ]
     },
-    "testimonialsHeading": "Co mówią klienci",
-    "testimonials": [
-      {
-        "quote": "Wiedziałam na każdym etapie, co się dzieje ze sprawą i co jeszcze trzeba dostarczyć. Nic nie umknęło.",
-        "name": "Olena K.",
-        "context": "Karta pobytu czasowego"
-      },
-      {
-        "quote": "Sprawa wydawała się skomplikowana, dopóki nie usiadłem z kimś, kto ją faktycznie prowadzi codziennie.",
-        "name": "Marco R.",
-        "context": "Zezwolenie na pracę"
-      },
-      {
-        "quote": "Odpowiedzi przychodziły szybko, po angielsku, bez zbędnego prawniczego żargonu.",
-        "name": "Aigerim T.",
-        "context": "Pobyt stały"
-      }
-    ],
     "faqHeading": "Najczęstsze pytania",
     "faq": [
       {
@@ -117,12 +99,7 @@
         "question": "Ile kosztuje prowadzenie sprawy?",
         "answer": "Koszt zależy od rodzaju procedury i jej złożoności. Wycenę podajemy po rozmowie wstępnej, kiedy znamy już zakres pracy — nie wcześniej."
       }
-    ],
-    "finalCta": {
-      "heading": "Nie wiesz, która procedura dotyczy twojej sytuacji?",
-      "body": "Napisz kilka zdań o swojej sprawie. Odpowiadamy zwykle w ciągu jednego dnia roboczego.",
-      "cta": "Opisz swoją sprawę"
-    }
+    ]
   },
   "services": {
     "karta-pobytu-czasowego": {

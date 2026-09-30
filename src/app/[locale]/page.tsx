@@ -31,11 +31,6 @@ export default async function HomePage({ params }: Props) {
   const whyItems = t.raw("why.items") as { title: string; body: string }[];
   const stepItems = t.raw("process.steps") as { title: string; body: string }[];
   const steps = stepItems.map((s, i) => ({ ...s, step: String(i + 1) }));
-  const testimonials = t.raw("testimonials") as {
-    quote: string;
-    name: string;
-    context: string;
-  }[];
   const faqItems = t.raw("faq") as { question: string; answer: string }[];
 
   return (
@@ -121,25 +116,6 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       <section
-        aria-labelledby="opinie-naglowek"
-        className="mx-auto max-w-5xl px-5 py-16"
-      >
-        <h2 id="opinie-naglowek" className="text-title">
-          {t("testimonialsHeading")}
-        </h2>
-        <ul className="mt-10 grid gap-8 sm:grid-cols-3">
-          {testimonials.map((item) => (
-            <li key={item.name} className="border-t-2 border-burgundy pt-5">
-              <p className="leading-relaxed text-ink">“{item.quote}”</p>
-              <p className="mt-4 text-sm text-muted">
-                {item.name} · {item.context}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section
         aria-labelledby="faq-naglowek"
         className="mx-auto max-w-3xl px-5 py-16"
       >
@@ -164,19 +140,6 @@ export default async function HomePage({ params }: Props) {
             </details>
           ))}
         </div>
-      </section>
-
-      <section className="mx-auto max-w-5xl px-5 py-20">
-        <h2 className="max-w-lg text-title">{t("finalCta.heading")}</h2>
-        <p className="mt-4 max-w-xl leading-relaxed text-muted">
-          {t("finalCta.body")}
-        </p>
-        <Link
-          href="/kontakt"
-          className="mt-7 inline-block bg-burgundy px-6 py-3 text-white hover:bg-burgundy-deep"
-        >
-          {t("finalCta.cta")}
-        </Link>
       </section>
     </>
   );
