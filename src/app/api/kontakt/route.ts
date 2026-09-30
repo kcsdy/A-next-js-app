@@ -1,12 +1,18 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-import { enquirySchema } from "@/lib/schema";
-import { getService } from "@/content/services";
+import nodemailer from "nodemailer";
+import { createTranslator } from "next-intl";
+import { createEnquirySchema } from "@/lib/schema";
+import { routing } from "@/i18n/routing";
 
 /**
  * Client-side validation is a convenience; this is the check that counts.
  * Nothing is written to a database — the enquiry is forwarded as email and
  * then forgotten, which keeps the RODO surface as small as possible.
+ *
+ * This route sits outside the [locale] segment (see src/middleware.ts
+ * matcher), so it gets no locale from the URL — the client sends the
+ * locale it was on in the request body instead, purely to pick which
+ * language to reply in.
  */
 
 // Crude in-memory throttle. Serverless instances are short-lived so this only
@@ -41,25 +47,37 @@ async function verifyTurnstile(token: string | undefined, ip: string) {
   return result.success;
 }
 
+async function loadMessages(locale: string) {
+  try {
+    return (await import(`../../../../messages/${locale}.json`)).default;
+  } catch {
+    return (await import(`../../../../messages/${routing.defaultLocale}.json`))
+      .default;
+  }
+}
+
 export async function POST(request: Request) {
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
 
+  const body = await request.json().catch(() => null);
+  const rawLocale = typeof body?.locale === "string" ? body.locale : "";
+  const locale = (routing.locales as readonly string[]).includes(rawLocale)
+    ? rawLocale
+    : routing.defaultLocale;
+
+  const messages = await loadMessages(locale);
+  const t = createTranslator({ locale, messages, namespace: "contactForm" });
+
   if (rateLimited(ip)) {
-    return NextResponse.json(
-      { error: "Zbyt wiele prób. Spróbuj ponownie za chwilę." },
-      { status: 429 },
-    );
+    return NextResponse.json({ error: t("api.rateLimited") }, { status: 429 });
   }
 
-  const body = await request.json().catch(() => null);
-  const parsed = enquirySchema.safeParse(body);
+  const schema = createEnquirySchema((key) => t(`errors.${key}`));
+  const parsed = schema.safeParse(body);
 
   if (!parsed.success) {
-    return NextResponse.json(
-      { error: "Formularz zawiera błędy." },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: t("api.invalid") }, { status: 400 });
   }
 
   const enquiry = parsed.data;
@@ -71,22 +89,30 @@ export async function POST(request: Request) {
 
   if (!(await verifyTurnstile(enquiry.turnstileToken, ip))) {
     return NextResponse.json(
-      { error: "Weryfikacja nie powiodła się. Odśwież stronę i spróbuj ponownie." },
+      { error: t("api.turnstileFailed") },
       { status: 400 },
     );
   }
 
+  // The internal notification email is always Polish — it goes to the
+  // firm's own inbox, not the visitor, regardless of which locale they used
+  // or which locale the site defaults to for visitors.
+  const plMessages = await loadMessages("pl");
+  const tPl = createTranslator({ locale: "pl", messages: plMessages });
   const matterLabel =
     enquiry.matter === "inna"
-      ? "Inna sprawa"
-      : (getService(enquiry.matter)?.title ?? enquiry.matter);
+      ? tPl("contactForm.fields.matterOther")
+      : tPl(`services.${enquiry.matter}.title`);
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  const to = process.env.CONTACT_TO ?? user;
 
-  // Without a key configured, log instead of failing — lets the form be
-  // exercised locally before the email provider is set up.
-  if (!apiKey) {
-    console.info("[kontakt] RESEND_API_KEY not set. Enquiry:", {
+  // Without SMTP configured, log instead of failing — lets the form be
+  // exercised locally before the mailbox credentials are set up.
+  if (!host || !user || !pass || !to) {
+    console.info("[kontakt] SMTP not configured. Enquiry:", {
       ...enquiry,
       matter: matterLabel,
     });
@@ -94,10 +120,20 @@ export async function POST(request: Request) {
   }
 
   try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from: process.env.CONTACT_FROM ?? "onboarding@resend.dev",
-      to: process.env.CONTACT_TO ?? "",
+    const port = Number(process.env.SMTP_PORT ?? 587);
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user, pass },
+    });
+
+    // Sent from the firm's own mailbox to itself; the visitor's address is in
+    // the body (and replyTo) rather than the From header, which must stay on
+    // our domain for the mail server to accept it.
+    await transporter.sendMail({
+      from: process.env.CONTACT_FROM ?? user,
+      to,
       replyTo: enquiry.email,
       subject: `Zapytanie: ${matterLabel} — ${enquiry.name}`,
       text: [
@@ -105,19 +141,15 @@ export async function POST(request: Request) {
         `Imię i nazwisko: ${enquiry.name}`,
         `E-mail: ${enquiry.email}`,
         `Telefon: ${enquiry.phone || "nie podano"}`,
+        `Język strony: ${locale}`,
         `Zgoda RODO: tak (${new Date().toISOString()})`,
         "",
         enquiry.message,
       ].join("\n"),
     });
-
-    if (error) throw new Error(error.message);
   } catch (error) {
     console.error("[kontakt] send failed", error);
-    return NextResponse.json(
-      { error: "Nie udało się wysłać wiadomości. Zadzwoń albo napisz e-mail." },
-      { status: 502 },
-    );
+    return NextResponse.json({ error: t("api.sendFailed") }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true, delivered: true });

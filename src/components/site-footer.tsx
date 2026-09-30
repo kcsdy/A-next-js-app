@@ -1,20 +1,25 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { site } from "@/content/site";
-import { services } from "@/content/services";
+import { serviceSlugs } from "@/content/services";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const t = await getTranslations("footer");
+  const tSite = await getTranslations("site");
+  const tServices = await getTranslations("services");
+
   return (
     <footer className="mt-24 bg-burgundy-deep text-beige-pale">
       <div className="mx-auto grid max-w-5xl gap-10 px-5 py-14 sm:grid-cols-3">
         <div>
           <p className="font-display text-xl text-white">{site.name}</p>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-beige">
-            {site.tagline}
+            {tSite("tagline")}
           </p>
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold text-white">Kontakt</h2>
+          <h2 className="text-sm font-semibold text-white">{t("contactHeading")}</h2>
           <address className="mt-3 space-y-1 text-sm not-italic text-beige">
             <p>{site.contact.street}</p>
             <p>
@@ -38,25 +43,27 @@ export function SiteFooter() {
             </p>
           </address>
           <dl className="mt-4 space-y-1 text-sm text-beige">
-            {site.hours.map((h) => (
-              <div key={h.days}>
-                <dt className="inline">{h.days}: </dt>
-                <dd className="inline">{h.time}</dd>
-              </div>
-            ))}
+            <div>
+              <dt className="inline">{t("hours.weekdays")}: </dt>
+              <dd className="inline">{t("hours.weekdaysTime")}</dd>
+            </div>
+            <div>
+              <dt className="inline">{t("hours.saturday")}: </dt>
+              <dd className="inline">{t("hours.saturdayTime")}</dd>
+            </div>
           </dl>
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold text-white">Zakres pomocy</h2>
+          <h2 className="text-sm font-semibold text-white">{t("servicesHeading")}</h2>
           <ul className="mt-3 space-y-1.5 text-sm text-beige">
-            {services.map((s) => (
-              <li key={s.slug}>
+            {serviceSlugs.map((slug) => (
+              <li key={slug}>
                 <Link
-                  href={`/uslugi/${s.slug}`}
+                  href={`/uslugi/${slug}`}
                   className="underline-offset-4 hover:underline"
                 >
-                  {s.title}
+                  {tServices(`${slug}.title`)}
                 </Link>
               </li>
             ))}
@@ -74,7 +81,7 @@ export function SiteFooter() {
             href="/polityka-prywatnosci"
             className="underline-offset-4 hover:underline"
           >
-            Polityka prywatności
+            {t("privacyLink")}
           </Link>
         </div>
       </div>
