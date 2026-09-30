@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { createTranslator } from "next-intl";
 import { createEnquirySchema } from "@/lib/schema";
 import { routing } from "@/i18n/routing";
@@ -104,12 +104,15 @@ export async function POST(request: Request) {
       ? tPl("contactForm.fields.matterOther")
       : tPl(`services.${enquiry.matter}.title`);
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  const to = process.env.CONTACT_TO ?? user;
 
-  // Without a key configured, log instead of failing — lets the form be
-  // exercised locally before the email provider is set up.
-  if (!apiKey) {
-    console.info("[kontakt] RESEND_API_KEY not set. Enquiry:", {
+  // Without SMTP configured, log instead of failing — lets the form be
+  // exercised locally before the mailbox credentials are set up.
+  if (!host || !user || !pass || !to) {
+    console.info("[kontakt] SMTP not configured. Enquiry:", {
       ...enquiry,
       matter: matterLabel,
     });
@@ -117,10 +120,20 @@ export async function POST(request: Request) {
   }
 
   try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from: process.env.CONTACT_FROM ?? "onboarding@resend.dev",
-      to: process.env.CONTACT_TO ?? "",
+    const port = Number(process.env.SMTP_PORT ?? 587);
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user, pass },
+    });
+
+    // Sent from the firm's own mailbox to itself; the visitor's address is in
+    // the body (and replyTo) rather than the From header, which must stay on
+    // our domain for the mail server to accept it.
+    await transporter.sendMail({
+      from: process.env.CONTACT_FROM ?? user,
+      to,
       replyTo: enquiry.email,
       subject: `Zapytanie: ${matterLabel} — ${enquiry.name}`,
       text: [
@@ -134,8 +147,6 @@ export async function POST(request: Request) {
         enquiry.message,
       ].join("\n"),
     });
-
-    if (error) throw new Error(error.message);
   } catch (error) {
     console.error("[kontakt] send failed", error);
     return NextResponse.json({ error: t("api.sendFailed") }, { status: 502 });

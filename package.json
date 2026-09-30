@@ -12,14 +12,15 @@
   "dependencies": {
     "next": "^16.3.5",
     "next-intl": "^4.14.5",
+    "nodemailer": "^10.0.10",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "resend": "^6.28.0",
     "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "^22.10.0",
+    "@types/nodemailer": "^8.0.2",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "tailwindcss": "^4.3.3",

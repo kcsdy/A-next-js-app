@@ -19,16 +19,19 @@ export default async function ScheduleAppointmentPage({ params }: Props) {
   const t = await getTranslations("schedulePage");
 
   return (
-    <div className="mx-auto max-w-3xl px-5 pt-14 pb-4">
-      <h1 className="text-title sm:text-display">{t("title")}</h1>
-      <p className="mt-5 text-lede leading-relaxed text-muted">{t("intro")}</p>
+    <div className="mx-auto max-w-6xl px-5 pt-14 pb-4">
+      <div className="max-w-3xl">
+        <h1 className="text-title sm:text-display">{t("title")}</h1>
+        <p className="mt-5 text-lede leading-relaxed text-muted">{t("intro")}</p>
+      </div>
 
       <div className="mt-10 border border-rule">
         <iframe
-          src="https://calendeo.pl/embed/7452dd3d-838b-4912-98a1-5b5f54a0131a"
+          src="https://bookings.cloud.microsoft/book/MCHImmigration1@mchimmigration.pl/?ismsaljsauthenabled"
           title={t("iframeTitle")}
           width="100%"
-          height="600"
+          height="750"
+          scrolling="yes"
           frameBorder="0"
         />
       </div>

@@ -15,7 +15,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open http://localhost:3000. With no `RESEND_API_KEY` set, the contact form
+Open http://localhost:3000. With no `SMTP_*` variables set, the contact form
 still works end to end and logs the enquiry to the terminal instead of sending
 mail, so you can build out the rest before touching an email provider.
 
@@ -26,7 +26,7 @@ src/content/site.ts        firm details, nav, hours, legal footer
 src/content/services.ts    the seven practice areas — drives the homepage list,
                            the /uslugi/[slug] pages, the form dropdown, sitemap
 src/app/globals.css        brand tokens (burgundy / beige / white), type scale
-src/app/api/kontakt/       form handler: validation, Turnstile, Resend
+src/app/api/kontakt/       form handler: validation, Turnstile, SMTP
 src/lib/schema.ts          one zod schema shared by client and server
 ```
 
@@ -37,8 +37,8 @@ needs to change.
 
 | Variable | Needed | What it does |
 |---|---|---|
-| `RESEND_API_KEY` | before launch | Sends the contact form. Free tier is plenty. |
-| `CONTACT_FROM` | before launch | Must be on a domain verified in Resend. |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | before launch | The firm mailbox's SMTP login; the contact form is sent through it. |
+| `CONTACT_FROM` | before launch | Sender; must be the mailbox above or an alias of it. |
 | `CONTACT_TO` | before launch | Where enquiries land. |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | recommended | Cloudflare Turnstile, free. Leave blank to disable. |
 | `TURNSTILE_SECRET_KEY` | recommended | Server-side half of the above. |
@@ -67,7 +67,7 @@ These are not polish items. The first three are legal requirements.
 
 - [ ] **Privacy policy.** `/polityka-prywatnosci` is a skeleton with TODOs in
       it. Retention periods, processors and the transfer-outside-EEA note must
-      be filled in. Vercel and Resend are both processors and both belong in
+      be filled in. Vercel and the mail provider are both processors and both belong in
       the list.
 - [ ] **Entity details.** NIP and REGON in `src/content/site.ts` are `TODO`.
       Polish law requires identifying the business behind a commercial site.
