@@ -27,12 +27,12 @@ export default async function ScheduleAppointmentPage({ params }: Props) {
 
       <div className="mt-10 border border-rule">
         <iframe
-          src="https://bookings.cloud.microsoft/book/MCHImmigration1@mchimmigration.pl/?ismsaljsauthenabled"
+          src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3NN4wtQVpFF7vua5hjIppPwbV-WtcTlK6eRIUMsKRJ3fOQYNOmYsx7tqY_sq_CZzE5UXTs9cME?gv=true"
           title={t("iframeTitle")}
-          width="100%"
-          height="750"
-          scrolling="yes"
-          frameBorder="0"
+          // Tall enough to show a full day of slots without the iframe
+          // scrolling internally (Google's page stacks on narrow screens).
+          className="block h-[1750px] w-full md:h-[1250px]"
+          style={{ border: 0 }}
         />
       </div>
     </div>
